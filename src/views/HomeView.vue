@@ -1,7 +1,9 @@
 <template>
   <div class="text-center leading-9">
     <h1 class="text-3xl font-semibold">Diari Jajan Tahun 2023</h1>
-    <h1>Pengeluaran Tahun Ini Rp. {{ formatCurrency(totalPengeluaran) }}</h1>
+    <h1 class="my-2">
+      Pengeluaran Tahun Ini <b>Rp. {{ formatCurrency(totalPengeluaran) }}</b>
+    </h1>
     <button
       @click="showModal"
       class="text-white rounded px-5 bg-indigo-800 hover:bg-indigo-900"

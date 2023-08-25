@@ -120,7 +120,7 @@ const todo = reactive({
 
 const clearInput = async () => {
   todo.nama = "";
-  todo.pengeluaraan = 0;
+  todo.pengeluaraan = null;
   todo.jam = "";
   todo.tanggal = "";
 };

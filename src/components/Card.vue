@@ -17,15 +17,15 @@
           <li class="py-3" v-for="(item, index) in items" :key="index">
             <div class="flex items-center space-x-4">
               <div class="inline-flex">
-                <p class="text-xs text-gray-900 dark:text-white">
+                <p class="text-sm text-gray-900 dark:text-white">
                   {{ item.jam }}
                 </p>
               </div>
-              <div class="text-xs flex-1 items-center text-gray-900">
+              <div class="text-sm flex-1 items-center text-gray-900">
                 {{ item.nama }}
               </div>
               <div
-                class="text-xs inline-flex items-center text-gray-900 dark:text-white"
+                class="text-sm inline-flex items-center text-gray-900 dark:text-white"
               >
                 Rp. {{ formatCurrency(item.pengeluaraan) }}
               </div>
@@ -35,14 +35,10 @@
       </div>
       <div className="h-0.5 bg-black"></div>
       <div class="flex text-right items-center justify-between mb-4 py-2">
-        <h1
-          class="flex-1 items-center font-semibold text-gray-900 dark:text-white"
-        >
+        <h1 class="flex-1 items-center font-bold text-gray-900 dark:text-white">
           Total
         </h1>
-        <h1
-          class="flex-1 items-center font-semibold text-gray-900 dark:text-white"
-        >
+        <h1 class="flex-1 items-center font-bold text-gray-900 dark:text-white">
           Rp. {{ formatCurrency(calculateTotal(items)) }}
         </h1>
       </div>
@@ -65,7 +61,23 @@ const groupedData = computed(() => {
     }
     grouped[tanggal].push(item);
   });
-  return grouped;
+
+  const sortedDates = Object.keys(grouped).sort((a, b) => {
+    return new Date(b) - new Date(a);
+  });
+
+  const sortedGroupedData = {};
+  sortedDates.forEach((tanggal) => {
+    // Mengurutkan item berdasarkan jam dalam urutan menaik
+    sortedGroupedData[tanggal] = grouped[tanggal].sort((a, b) => {
+      // Mengonversi jam menjadi objek Date
+      const dateA = new Date(`1970-01-01T${a.jam}`);
+      const dateB = new Date(`1970-01-01T${b.jam}`);
+      return dateA - dateB;
+    });
+  });
+
+  return sortedGroupedData;
 });
 
 const calculateTotal = (items) => {
