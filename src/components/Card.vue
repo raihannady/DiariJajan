@@ -1,7 +1,7 @@
 <template>
   <div class="my-2 flex flex-wrap justify-center">
     <div
-      class="w-1/4 p-7 m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      class="w-100% sm:w-1/2 md:w-1/4 p-7 m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       v-for="(items, tanggal) in groupedData"
       :key="tanggal"
     >
